@@ -32,16 +32,10 @@ class _SecondFormState extends State<SecondForm> {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
 //      Center(child: SvgPicture.asset('assets/icons/defender.png')),
       Center(child: Image.asset('assets/icons/defender.png')),
-      Text('Совет', style: Theme
-          .of(context)
-          .textTheme
-          .bodyText1),
+      Text('Совет', style: Theme.of(context).textTheme.bodyText1),
       SizedBox(height: 4),
       Text('Проверьте безопасность аккаунта.',
-          style: Theme
-              .of(context)
-              .textTheme
-              .bodyText1),
+          style: Theme.of(context).textTheme.bodyText1),
       SizedBox(height: 12),
       FlatButton(
           padding: const EdgeInsets.all(0),
