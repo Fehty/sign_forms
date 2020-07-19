@@ -113,6 +113,8 @@ class _FirstFormState extends State<FirstForm> {
   Widget confirmationButtonSection() {
     List<Widget> buttonList = [
       FlatButton(
+          splashColor: Color.fromRGBO(211, 106, 98, 0.3),
+          textColor: Colors.white,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
               side: BorderSide(width: 1, color: Colors.black12)),
@@ -127,6 +129,7 @@ class _FirstFormState extends State<FirstForm> {
             SizedBox(width: 8)
           ])),
       FlatButton(
+          splashColor: Color.fromRGBO(91, 143, 216, 0.3),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
               side: BorderSide(width: 1, color: Colors.black12)),
