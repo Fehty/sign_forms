@@ -1,9 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sign_forms/widgets/custom_checkbox.dart';
 
-import 'dart:io' show Platform;
+import '../main.dart';
 
 class FirstForm extends StatefulWidget {
   @override
@@ -11,19 +10,12 @@ class FirstForm extends StatefulWidget {
 }
 
 class _FirstFormState extends State<FirstForm> {
-  bool isMobile;
+  double screenWidth;
   bool isPortraitMode;
   bool _checkboxState = true;
-  double screenWidth;
 
   @override
   Widget build(BuildContext context) {
-    try {
-      if (Platform.isAndroid || Platform.isIOS || Platform.isFuchsia)
-        isMobile = true;
-    } catch (e) {
-      isMobile = false;
-    }
     isPortraitMode = MediaQuery.of(context).orientation == Orientation.portrait;
     screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -137,6 +129,7 @@ class _FirstFormState extends State<FirstForm> {
           ])),
       FlatButton(
           splashColor: Color.fromRGBO(91, 143, 216, 0.3),
+          textColor: Colors.white,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
               side: BorderSide(width: 1, color: Colors.black12)),
