@@ -22,17 +22,16 @@ class MyApp extends StatelessWidget {
       isMobile = false;
     }
     return NotificationListener<OverscrollIndicatorNotification>(
-      onNotification: (scroll) {
-        scroll.disallowGlow();
-        return true;
-      },
-      child: MaterialApp(
-          title: 'Flutter Form',
-          theme: ThemeData(
-              primarySwatch: Colors.blue,
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-              textTheme: textTheme),
-          home: SecondForm()),
-    );
+        onNotification: (scroll) {
+          scroll.disallowGlow();
+          return true;
+        },
+        child: MaterialApp(
+            title: 'Flutter Form',
+            theme: ThemeData(
+                primarySwatch: Colors.blue,
+                visualDensity: VisualDensity.adaptivePlatformDensity,
+                textTheme: textTheme),
+            home: FirstForm()));
   }
 }

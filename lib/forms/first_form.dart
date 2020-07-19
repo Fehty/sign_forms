@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:sign_forms/forms/second_form.dart';
 import 'package:sign_forms/widgets/custom_checkbox.dart';
 
 import '../main.dart';
@@ -133,7 +134,15 @@ class _FirstFormState extends State<FirstForm> {
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
               side: BorderSide(width: 1, color: Colors.black12)),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                pageBuilder: (_, __, ___) => SecondForm(),
+                transitionDuration: Duration(seconds: 0),
+              ),
+            );
+          },
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Icon(Icons.check, size: 22, color: Color.fromRGBO(91, 143, 216, 1)),
             SizedBox(width: 8),

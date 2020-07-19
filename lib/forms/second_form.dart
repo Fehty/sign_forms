@@ -23,7 +23,7 @@ class _SecondFormState extends State<SecondForm> {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text('Благодарим за подтверждение',
           style: Theme.of(context).textTheme.headline5),
-      SizedBox(height: 20),
+      SizedBox(height: 24),
       Text('Это помогает нам защитить ваш аккаунт.',
           style: Theme.of(context).textTheme.bodyText1)
     ]);
@@ -37,7 +37,7 @@ class _SecondFormState extends State<SecondForm> {
       SizedBox(height: 4),
       Text('Проверьте безопасность аккаунта.',
           style: Theme.of(context).textTheme.bodyText1),
-      SizedBox(height: 16),
+      SizedBox(height: 12),
       FlatButton(
           padding: const EdgeInsets.all(0),
           onPressed: () {},
@@ -57,7 +57,7 @@ class _SecondFormState extends State<SecondForm> {
                     style: Theme.of(context)
                         .textTheme
                         .subtitle2
-                        .copyWith(fontWeight: FontWeight.w500))
+                        .copyWith(fontWeight: FontWeight.w400))
               ])))
     ]);
   }
@@ -65,7 +65,9 @@ class _SecondFormState extends State<SecondForm> {
   Widget bottomSection() {
     return Row(children: [
       FlatButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
           splashColor: Color.fromRGBO(91, 143, 216, 0.3),
           textColor: Colors.white,

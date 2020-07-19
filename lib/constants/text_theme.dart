@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 TextTheme textTheme = TextTheme(
-    headline5: TextStyle(fontWeight: FontWeight.w500, fontSize: 24),
+    headline5: TextStyle(fontWeight: FontWeight.w400, fontSize: 24),
     subtitle1: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
     subtitle2: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
     bodyText1: TextStyle(
