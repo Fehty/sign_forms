@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sign_forms/widgets/custom_checkbox.dart';
 
+import 'dart:io' show Platform;
+
 class FirstForm extends StatefulWidget {
   @override
   _FirstFormState createState() => _FirstFormState();
@@ -9,9 +11,14 @@ class FirstForm extends StatefulWidget {
 
 class _FirstFormState extends State<FirstForm> {
   bool _checkboxState = true;
+  var isMobile = Platform.isAndroid || Platform.isIOS || Platform.isFuchsia;
+  var isPortraitMode;
+  double screenWidth;
 
   @override
   Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    isPortraitMode = MediaQuery.of(context).orientation == Orientation.portrait;
     return Scaffold(
         appBar: AppBar(title: Text('First form')), body: buildBody());
   }
@@ -38,7 +45,7 @@ class _FirstFormState extends State<FirstForm> {
     return Column(children: [
       Text('Приложению "Zapier" предоставлен доступ к вашему аккаунту Google',
           style: Theme.of(context).textTheme.headline5),
-      SizedBox(height: 16),
+      SizedBox(height: 18),
       Text(
           'Если вы не предоставляли доступ, возможно, '
           'кто-то посторонний использует ваш аккаунт.',
@@ -104,71 +111,92 @@ class _FirstFormState extends State<FirstForm> {
   }
 
   Widget confirmationButtonSection() {
+    List<Widget> buttonList = [
+      FlatButton(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+              side: BorderSide(width: 1, color: Colors.black12)),
+          onPressed: () {},
+          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Icon(Icons.clear, size: 22, color: Color.fromRGBO(211, 106, 98, 1)),
+            SizedBox(width: 8),
+            Text('Нет, защитить аккаунт',
+                style: Theme.of(context).textTheme.bodyText1.copyWith(
+                    color: Color.fromRGBO(211, 106, 98, 1),
+                    fontWeight: FontWeight.bold)),
+            SizedBox(width: 8)
+          ])),
+      FlatButton(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+              side: BorderSide(width: 1, color: Colors.black12)),
+          onPressed: () {},
+          child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Icon(Icons.check, size: 22, color: Color.fromRGBO(91, 143, 216, 1)),
+            SizedBox(width: 8),
+            Text('Да',
+                style: Theme.of(context).textTheme.bodyText1.copyWith(
+                    color: Color.fromRGBO(91, 143, 216, 1),
+                    fontWeight: FontWeight.bold)),
+            SizedBox(width: 8)
+          ]))
+    ];
+
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text('Это были вы?', style: Theme.of(context).textTheme.bodyText1),
       SizedBox(height: 12),
-      Row(children: [
-        FlatButton(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-                side: BorderSide(width: 1, color: Colors.black12)),
-            onPressed: () {},
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Icon(Icons.clear,
-                  size: 22, color: Color.fromRGBO(211, 106, 98, 1)),
-              SizedBox(width: 8),
-              Text('Нет, защитить аккаунт',
-                  style: Theme.of(context).textTheme.bodyText1.copyWith(
-                      color: Color.fromRGBO(211, 106, 98, 1),
-                      fontWeight: FontWeight.bold)),
-              SizedBox(width: 8)
-            ])),
-        SizedBox(width: 8),
-        Expanded(
-            child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    side: BorderSide(width: 1, color: Colors.black12)),
-                onPressed: () {},
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Icon(Icons.check,
-                      size: 22, color: Color.fromRGBO(91, 143, 216, 1)),
+      isMobile && screenWidth < 400 && isPortraitMode
+          ? Wrap(children: [buttonList[0], SizedBox(width: 8), buttonList[1]])
+          : isMobile && screenWidth < 570 && isPortraitMode
+              ? Row(children: [
+                  buttonList[0],
                   SizedBox(width: 8),
-                  Text('Да',
-                      style: Theme.of(context).textTheme.bodyText1.copyWith(
-                          color: Color.fromRGBO(91, 143, 216, 1),
-                          fontWeight: FontWeight.bold)),
-                  SizedBox(width: 8)
-                ])))
-      ])
+                  Expanded(child: buttonList[1])
+                ])
+              : isMobile
+                  ? Row(children: [
+                      Expanded(child: buttonList[0]),
+                      SizedBox(width: 8),
+                      Expanded(child: buttonList[1])
+                    ])
+                  : Row(children: [
+                      Expanded(child: buttonList[0]),
+                      SizedBox(width: 8),
+                      Expanded(child: buttonList[1])
+                    ])
     ]);
   }
 
+  Widget mainColumn() {
+    return Padding(
+        padding: const EdgeInsets.all(22),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              timeSection(),
+              SizedBox(height: 14),
+              titleSection(),
+              SizedBox(height: 28),
+              accountSection(),
+              SizedBox(height: 40),
+              deviceSection(),
+              SizedBox(height: 40),
+              confirmationButtonSection()
+            ]));
+  }
+
   Widget buildBody() {
-    return Center(
-        child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 552),
-            child: SingleChildScrollView(
-              child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6)),
-                  child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            timeSection(),
-                            SizedBox(height: 12),
-                            titleSection(),
-                            SizedBox(height: 24),
-                            accountSection(),
-                            SizedBox(height: 36),
-                            deviceSection(),
-                            SizedBox(height: 36),
-                            confirmationButtonSection()
-                          ]))),
-            )));
+    Widget mobileLayout = SingleChildScrollView(child: mainColumn());
+    Widget pcLayout = ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: 552),
+        child: SingleChildScrollView(
+            child: Card(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6)),
+                child: mainColumn())));
+
+    return isMobile ? mobileLayout : pcLayout;
   }
 }
