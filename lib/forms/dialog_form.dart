@@ -55,7 +55,7 @@ class _DialogFormState extends State<DialogForm> {
 
   Widget middleSection() {
     return Padding(
-        padding: const EdgeInsets.only(left: 22, top: 16),
+        padding: const EdgeInsets.only(left: 22, top: 16, right: 22),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           SizedBox(height: 12),
           Text('У приложения есть доступ к:',

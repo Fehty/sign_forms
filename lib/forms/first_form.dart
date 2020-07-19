@@ -67,8 +67,6 @@ class _FirstFormState extends State<FirstForm> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6)),
               content: Builder(builder: (context) {
-                var height = MediaQuery.of(context).size.height;
-                var width = MediaQuery.of(context).size.width;
                 return Container(width: 512, height: 384, child: DialogForm());
               }));
         });

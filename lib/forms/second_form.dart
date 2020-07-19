@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 import '../main.dart';
 
@@ -9,8 +8,13 @@ class SecondForm extends StatefulWidget {
 }
 
 class _SecondFormState extends State<SecondForm> {
+  double screenWidth;
+  bool isPortraitMode;
+
   @override
   Widget build(BuildContext context) {
+    isPortraitMode = MediaQuery.of(context).orientation == Orientation.portrait;
+    screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(body: buildBody());
   }
 
@@ -26,11 +30,18 @@ class _SecondFormState extends State<SecondForm> {
 
   Widget middleSection() {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Center(child: SvgPicture.asset('assets/icons/defender.svg')),
-      Text('Совет', style: Theme.of(context).textTheme.bodyText1),
+//      Center(child: SvgPicture.asset('assets/icons/defender.png')),
+      Center(child: Image.asset('assets/icons/defender.png')),
+      Text('Совет', style: Theme
+          .of(context)
+          .textTheme
+          .bodyText1),
       SizedBox(height: 4),
       Text('Проверьте безопасность аккаунта.',
-          style: Theme.of(context).textTheme.bodyText1),
+          style: Theme
+              .of(context)
+              .textTheme
+              .bodyText1),
       SizedBox(height: 12),
       FlatButton(
           padding: const EdgeInsets.all(0),
@@ -45,19 +56,22 @@ class _SecondFormState extends State<SecondForm> {
               padding:
               const EdgeInsets.only(left: 14, top: 6, bottom: 6, right: 16),
               child: Row(mainAxisSize: MainAxisSize.min, children: [
-                SvgPicture.asset('assets/icons/small_defender.svg'),
+//                SvgPicture.asset('assets/icons/small_defender.svg'),
+                Image.asset('assets/icons/small_defender.png'),
                 SizedBox(width: 12),
-                Text('Пройти Проверку безопасности',
-                    style: Theme
-                        .of(context)
-                        .textTheme
-                        .bodyText1)
+                Flexible(
+                  child: Text('Пройти Проверку безопасности',
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .bodyText1),
+                )
               ])))
     ]);
   }
 
   Widget bottomSection() {
-    return Row(children: [
+    List<Widget> buttonList = [
       FlatButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -66,10 +80,13 @@ class _SecondFormState extends State<SecondForm> {
           splashColor: Color.fromRGBO(91, 143, 216, 0.3),
           textColor: Colors.white,
           child: Text('Отмена',
-              style: Theme.of(context).textTheme.bodyText1.copyWith(
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .bodyText1
+                  .copyWith(
                   color: Color.fromRGBO(91, 143, 216, 1),
                   fontWeight: FontWeight.bold))),
-      Spacer(),
       FlatButton(
           onPressed: () {},
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
@@ -77,11 +94,19 @@ class _SecondFormState extends State<SecondForm> {
           color: Color.fromRGBO(25, 115, 232, 1),
           textColor: Colors.white,
           child: Text('Показать все действия',
-              style: Theme.of(context)
+              style: Theme
+                  .of(context)
                   .textTheme
                   .bodyText1
                   .copyWith(color: Colors.white, fontWeight: FontWeight.bold)))
-    ]);
+    ];
+    return isMobile && screenWidth < 400 && isPortraitMode
+        ? Wrap(children: [buttonList[0], SizedBox(width: 8), buttonList[1]])
+        : isMobile && screenWidth < 570 && isPortraitMode
+        ? Row(children: [buttonList[0], Spacer(), buttonList[1]])
+        : isMobile
+        ? Row(children: [buttonList[0], Spacer(), buttonList[1]])
+        : Row(children: [buttonList[0], Spacer(), buttonList[1]]);
   }
 
   Widget mainColumn() {
