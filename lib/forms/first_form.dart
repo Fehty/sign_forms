@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sign_forms/forms/second_form.dart';
 import 'package:sign_forms/widgets/custom_checkbox.dart';
+import 'package:sign_forms/widgets/scale_route.dart';
 
 import '../main.dart';
+import 'dialog_form.dart';
 
 class FirstForm extends StatefulWidget {
   @override
@@ -19,8 +21,7 @@ class _FirstFormState extends State<FirstForm> {
   Widget build(BuildContext context) {
     isPortraitMode = MediaQuery.of(context).orientation == Orientation.portrait;
     screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-        appBar: AppBar(title: Text('First form')), body: buildBody());
+    return Scaffold(body: buildBody());
   }
 
   Widget timeSection() {
@@ -53,6 +54,26 @@ class _FirstFormState extends State<FirstForm> {
     ]);
   }
 
+  openDialogForm() async {
+    return showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              actionsPadding: const EdgeInsets.all(0),
+              buttonPadding: const EdgeInsets.all(0),
+              contentPadding: const EdgeInsets.all(0),
+              insetPadding: const EdgeInsets.all(0),
+              titlePadding: const EdgeInsets.all(0),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(6)),
+              content: Builder(builder: (context) {
+                var height = MediaQuery.of(context).size.height;
+                var width = MediaQuery.of(context).size.width;
+                return Container(width: 512, height: 384, child: DialogForm());
+              }));
+        });
+  }
+
   Widget accountSection() {
     return Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
       Card(
@@ -76,7 +97,13 @@ class _FirstFormState extends State<FirstForm> {
       Padding(
           padding: const EdgeInsets.only(bottom: 24),
           child: IconButton(
-              iconSize: 30, icon: Icon(Icons.info_outline), onPressed: () {}))
+              iconSize: 30,
+              icon: Icon(Icons.info_outline),
+              onPressed: () {
+                isMobile
+                    ? Navigator.push(context, ScaleRoute(page: DialogForm()))
+                    : openDialogForm();
+              }))
     ]);
   }
 
@@ -136,12 +163,10 @@ class _FirstFormState extends State<FirstForm> {
               side: BorderSide(width: 1, color: Colors.black12)),
           onPressed: () {
             Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (_, __, ___) => SecondForm(),
-                transitionDuration: Duration(seconds: 0),
-              ),
-            );
+                context,
+                PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => SecondForm(),
+                    transitionDuration: Duration(seconds: 0)));
           },
           child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Icon(Icons.check, size: 22, color: Color.fromRGBO(91, 143, 216, 1)),

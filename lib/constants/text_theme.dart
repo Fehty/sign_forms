@@ -14,3 +14,6 @@ TextTheme textTheme = TextTheme(
         fontWeight: FontWeight.w500,
         fontSize: 12,
         color: Color.fromRGBO(110, 112, 112, 1)));
+
+TextStyle menuItem =
+    TextStyle(fontWeight: FontWeight.w600, fontSize: 18, color: Colors.black54);

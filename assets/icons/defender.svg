@@ -1,0 +1,43 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" height="185" viewBox="0 0 450 185" width="450"
+    xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <circle cx="20" cy="20" id="a" r="20" />
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(324 81)">
+            <rect fill="#D2E3FC" height="24" rx="2" width="26" />
+            <path d="M17.5 9L23 20H12z" fill="#FFF" />
+            <path d="M11 12l5 8H6z" fill="#FFF" />
+            <circle cx="6.5" cy="7.5" fill="#FFF" r="3.5" />
+        </g>
+        <g transform="translate(278 69)">
+            <path
+                d="M16 48c6.312-14.42 16-22.095 16-31.311C32 7.472 24.837 0 16 0S0 7.472 0 16.689c0 9.137 10.108 16.759 15.85 30.938L16 48z"
+                fill="#D2E3FC" />
+            <circle cx="16" cy="16" fill="#FFF" r="8" />
+        </g>
+        <g transform="translate(82 82)">
+            <rect fill="#D2E3FC" height="22" rx="11" width="36" />
+            <circle cx="12" cy="11" fill="#FFF" r="7" />
+        </g>
+        <g transform="translate(132 73)">
+            <mask fill="#fff" id="b">
+                <use xlink:href="#a" />
+            </mask>
+            <use fill="#D2E3FC" xlink:href="#a" />
+            <g mask="url(#b)">
+                <path
+                    d="M20 17a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM20 54c9.389 0 17-7.611 17-17s-7.611-17-17-17c-6.766 0-12.608 3.952-15.345 9.674A16.933 16.933 0 0 0 3 37c0 9.389 7.611 17 17 17z"
+                    fill="#FFF" />
+                <path
+                    d="M20 0c11.046 0 20 8.947 20 19.984 0 11.036-8.954 19.983-20 19.983S0 31.02 0 19.984C0 8.947 8.954 0 20 0zm0 5C11.715 5 5 11.71 5 19.984c0 8.274 6.715 14.983 15 14.983s15-6.71 15-14.983C35 11.709 28.285 5 20 5z"
+                    fill="#D2E3FC" fill-rule="nonzero" />
+            </g>
+        </g>
+        <path
+            d="M188.093 89.901c-.124-19.564-.124-30.601 0-33.11L225 46l36.907 10.79c.124 2.51.124 13.547 0 33.111-.47 21.674-12.773 38.373-36.907 50.099-24.134-11.726-36.437-28.425-36.907-50.099z"
+            fill="#4285F4" />
+        <path d="M236.22 77l4.49 3.98-19.219 21.682L210 91.761l4.13-4.353 6.988 6.629z"
+            fill="#E8F0FE" fill-rule="nonzero" />
+    </g>
+</svg>

@@ -1,10 +1,8 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:sign_forms/constants/text_theme.dart';
 import 'package:sign_forms/forms/first_form.dart';
-
-import 'dart:io' show Platform;
-
-import 'package:sign_forms/forms/second_form.dart';
 
 void main() => runApp(MyApp());
 

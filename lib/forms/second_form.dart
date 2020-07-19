@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../main.dart';
 
@@ -8,15 +9,9 @@ class SecondForm extends StatefulWidget {
 }
 
 class _SecondFormState extends State<SecondForm> {
-  double screenWidth;
-  bool isPortraitMode;
-
   @override
   Widget build(BuildContext context) {
-    isPortraitMode = MediaQuery.of(context).orientation == Orientation.portrait;
-    screenWidth = MediaQuery.of(context).size.width;
-    return Scaffold(
-        appBar: AppBar(title: Text('Second form')), body: buildBody());
+    return Scaffold(body: buildBody());
   }
 
   Widget topSection() {
@@ -31,8 +26,7 @@ class _SecondFormState extends State<SecondForm> {
 
   Widget middleSection() {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Center(child: Image.asset('assets/images/defender.png')),
-      SizedBox(height: 48),
+      Center(child: SvgPicture.asset('assets/icons/defender.svg')),
       Text('Совет', style: Theme.of(context).textTheme.bodyText1),
       SizedBox(height: 4),
       Text('Проверьте безопасность аккаунта.',
@@ -49,15 +43,15 @@ class _SecondFormState extends State<SecondForm> {
           textColor: Colors.white,
           child: Padding(
               padding:
-                  const EdgeInsets.only(left: 12, top: 6, bottom: 6, right: 16),
+              const EdgeInsets.only(left: 14, top: 6, bottom: 6, right: 16),
               child: Row(mainAxisSize: MainAxisSize.min, children: [
-                Image.asset('assets/images/small_defender.png'),
+                SvgPicture.asset('assets/icons/small_defender.svg'),
                 SizedBox(width: 12),
                 Text('Пройти Проверку безопасности',
-                    style: Theme.of(context)
+                    style: Theme
+                        .of(context)
                         .textTheme
-                        .subtitle2
-                        .copyWith(fontWeight: FontWeight.w400))
+                        .bodyText1)
               ])))
     ]);
   }
@@ -98,7 +92,6 @@ class _SecondFormState extends State<SecondForm> {
             mainAxisSize: MainAxisSize.min,
             children: [
               topSection(),
-              SizedBox(height: 72),
               middleSection(),
               SizedBox(height: 28),
               bottomSection()
