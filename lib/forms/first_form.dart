@@ -195,7 +195,6 @@ class _FirstFormState extends State<FirstForm> {
         constraints: BoxConstraints(maxWidth: 552),
         child: SingleChildScrollView(
             child: Card(
-                elevation: 0,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6)),
                 child: mainColumn())));
